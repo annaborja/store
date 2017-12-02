@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202204718) do
+ActiveRecord::Schema.define(version: 20171202223937) do
+
+  create_table "membership_levels", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "usd_cost", null: false
+    t.integer "free_guests", default: 0, null: false
+    t.integer "additional_guest_usd_cost", default: 1999, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_membership_levels_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171202204718) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "membership_level_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
