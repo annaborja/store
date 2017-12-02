@@ -33,7 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bootstrap-sass' # CSS styling.
 gem 'devise' # User authentication.
+gem 'jquery-rails' # Required for Bootstrap.
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

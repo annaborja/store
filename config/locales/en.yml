@@ -30,4 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  global:
+    title: 'Old Relic Social Club'
+    description: 'The socialest of clubs.'
