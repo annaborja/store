@@ -1,0 +1,14 @@
+<h1><%=
+  if @has_membership
+    t('account.membership.title.is_member', level: t("membership_level.#{current_user.membership_level.name}.name"))
+  else
+    t('account.membership.title.is_not_member')
+  end
+%></h1>
+
+<% @membership_levels.each do |membership_level| %>
+  <h2><%= t("membership_level.#{membership_level.name}.name") %></h2>
+
+  <p><%= t("membership_level.#{membership_level.name}.description") %></p>
+  <p><strong><%= membership_level.usd_cost %></strong></p>
+<% end %>

@@ -38,6 +38,21 @@ en:
       log_out: 'Log Out'
 
   account:
-    my_account: 'My Account'
-    subscription:
-      title: 'My Subscription'
+    nav:
+      title: 'Account'
+      membership: 'Membership'
+    membership:
+      title:
+        is_member: 'Thank you for being a %{level} member'
+        is_not_member: 'Become a member'
+
+  membership_level:
+    basic:
+      name: 'Basic'
+      description: 'The most basic of basics.'
+    classic:
+      name: 'Classic'
+      description: 'Classy classy classy.'
+    modern:
+      name: 'Modern'
+      description: 'Modern, elegant, sleek, sophisticated.'

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'account/subscription', as: 'subscription'
+  get 'account/membership', as: 'membership'
 
   root 'home#index'
 
