@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'account/subscription'
+
   root 'home#index'
 
   devise_for :users
