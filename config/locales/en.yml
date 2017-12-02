@@ -33,3 +33,11 @@ en:
   global:
     title: 'Old Relic Social Club'
     description: 'The socialest of clubs.'
+    authentication:
+      log_in: 'Log In'
+      log_out: 'Log Out'
+
+  account:
+    my_account: 'My Account'
+    subscription:
+      title: 'My Subscription'

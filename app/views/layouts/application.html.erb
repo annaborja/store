@@ -15,9 +15,9 @@
   <body>
     <%= render 'shared/nav' %>
 
-    <main class="container">
-      <% if notice %><p class="notice"><%= notice %></p><% end %>
-      <% if alert %><p class="alert"><%= alert %></p><% end %>
+    <main class="container" role="main">
+      <% if notice %><div class="alert alert-success" role="alert"><%= notice %></div><% end %>
+      <% if alert %><div class="alert alert-warning" role="alert"><%= alert %></div><% end %>
 
       <%= yield %>
     </main>
