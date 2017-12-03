@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203062908) do
+ActiveRecord::Schema.define(version: 20171203075723) do
 
   create_table "gateway_customers", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20171203062908) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "subscription_plan_id", null: false
+    t.string "guest_subscription_plan_id", null: false
+    t.integer "num_trial_days", null: false
     t.index ["name"], name: "index_membership_levels_on_name", unique: true
     t.index ["subscription_plan_id"], name: "index_membership_levels_on_subscription_plan_id", unique: true
   end

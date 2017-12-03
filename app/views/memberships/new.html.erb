@@ -16,10 +16,11 @@
         @membership_levels.map do |membership_level|
           [
             t('membership.purchase_form.level_choice',
+              interval: t('membership.interval.month'),
               name: t("membership.level.#{membership_level.name}.name"),
               price: membership_level.usd_cost
             ),
-            membership_level.name,
+            membership_level.name
           ]
         end,
         @level
@@ -35,9 +36,18 @@
     <%= number_field_tag 'num_guests', 0, class: 'js-num-guests', max: 1000, min: 0 %>
   </div>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="js-stripe-button stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"
-          data-locale="auto"></script>
+  <% if @gateway_customers.length > 0 %>
+    <%= submit_tag t('membership.purchase_form.submit'),
+      data: {
+        disable_with: t('membership.purchase_form.submitting')
+      }
+    %>
+  <% else %>
+    <script src="https://checkout.stripe.com/checkout.js"
+      class="js-stripe-button stripe-button"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-description="A month's subscription"
+      data-amount="500"
+      data-locale="<%= I18n.locale %>"></script>
+  <% end %>
 <% end %>
