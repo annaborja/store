@@ -5,4 +5,7 @@ class AccountController < ApplicationController
     @has_membership = !!current_user.membership_level
     @membership_levels = MembershipLevel.all.order(usd_cost: :asc)
   end
+
+  def membership_purchase
+  end
 end

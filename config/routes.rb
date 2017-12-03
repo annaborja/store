@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'account/membership', as: 'membership'
+  get 'membership', to: 'account#membership', as: 'membership'
+  get 'membership/purchase', to: 'account#membership_purchase', as: 'membership_purchase'
 
   root 'home#index'
 

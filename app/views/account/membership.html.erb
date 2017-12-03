@@ -11,4 +11,9 @@
 
   <p><%= t("membership_level.#{membership_level.name}.description") %></p>
   <p><strong><%= membership_level.usd_cost %></strong></p>
+
+  <%= link_to t('membership_level.purchase'), membership_purchase_path(level: membership_level.name),
+    class: 'btn btn-default',
+    role: 'button'
+  %>
 <% end %>
