@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :charges, only: [:new, :create]
+
   get 'membership', to: 'account#membership', as: 'membership'
   get 'membership/purchase', to: 'account#membership_purchase', as: 'membership_purchase'
 
