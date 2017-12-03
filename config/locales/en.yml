@@ -33,9 +33,25 @@ en:
   global:
     title: 'Old Relic Social Club'
     description: 'The socialest of clubs.'
-    authentication:
-      log_in: 'Log In'
-      log_out: 'Log Out'
+
+  activerecord:
+    attributes:
+      user:
+        email: 'Email address'
+        password: 'Password'
+
+  authentication:
+    forgot_password:
+      nav: 'Forgot your password?'
+    login:
+      title: 'Please log in'
+      nav: 'Log In'
+      submit: 'Log In'
+    logout:
+      nav: 'Log Out'
+    remember_me: 'Remember me'
+    signup:
+      nav: 'Sign Up'
 
   nav:
     account:
