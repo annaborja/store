@@ -1,0 +1,49 @@
+<div id="carousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel" data-slide-to="1"></li>
+    <li data-target="#carousel" data-slide-to="2"></li>
+  </ol>
+
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <%= image_tag 'hero/go-places.jpg', title: 'Photo by Arthur Poulin on Unsplash' %>
+
+      <div class="container">
+        <div class="carousel-caption">
+          <h1><%= t('home.hero.go_places') %></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <%= image_tag 'hero/meet-people.jpg', title: 'Photo by Omar Lopez on Unsplash' %>
+
+      <div class="container">
+        <div class="carousel-caption">
+          <h1><%= t('home.hero.meet_people') %></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <%= image_tag 'hero/make-memories.jpg', title: 'Photo by Daniel Jensen on Unsplash' %>
+
+      <div class="container">
+        <div class="carousel-caption">
+          <h1><%= t('home.hero.make_memories') %></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only"><%= t('home.carousel.previous') %></span>
+  </a>
+
+  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only"><%= t('home.carousel.next') %></span>
+  </a>
+</div>

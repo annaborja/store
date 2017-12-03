@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-lg-4">
+    <%= image_tag 'subscription/basic.jpg',
+      class: 'img-circle',
+      height: 140,
+      title: 'Photo by Ethan Robertson on Unsplash',
+      width: 140
+    %>
+
+    <h2><%= t('membership.level.basic.name') %></h2>
+
+    <p><%= t('home.subscriptions.basic.description') %></p>
+
+    <p><%= link_to t('home.subscriptions.subscribe').html_safe,
+      new_membership_path(level: 'basic'),
+      class: 'btn btn-default',
+      role: 'button'
+    %></p>
+  </div>
+
+  <div class="col-lg-4">
+    <%= image_tag 'subscription/classic.jpg',
+      class: 'img-circle',
+      height: 140,
+      title: 'Photo by Kym Ellis on Unsplash',
+      width: 140
+    %>
+
+    <h2><%= t('membership.level.classic.name') %></h2>
+
+    <p><%= t('home.subscriptions.classic.description') %></p>
+
+    <p><%= link_to t('home.subscriptions.subscribe').html_safe,
+      new_membership_path(level: 'classic'),
+      class: 'btn btn-default',
+      role: 'button'
+    %></p>
+  </div>
+
+  <div class="col-lg-4">
+    <%= image_tag 'subscription/modern.jpg',
+      class: 'img-circle',
+      height: 140,
+      title: 'Photo by toine Garnier on Unsplash',
+      width: 140
+    %>
+
+    <h2><%= t('membership.level.modern.name') %></h2>
+
+    <p><%= t('home.subscriptions.modern.description') %></p>
+
+    <p><%= link_to t('home.subscriptions.subscribe').html_safe,
+      new_membership_path(level: 'modern'),
+      class: 'btn btn-default',
+      role: 'button'
+    %></p>
+  </div>
+</div>

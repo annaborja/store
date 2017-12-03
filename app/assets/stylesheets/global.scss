@@ -1,0 +1,25 @@
+body {
+  color: $text-color;
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.625;
+  padding-bottom: 40px;
+}
+
+.navbar-brand {
+  .glyphicon-star {
+    top: 2px;
+  }
+}
+
+footer {
+  text-align: center;
+}
+
+main.container {
+  padding: 90px 15px 40px 15px;
+}
+
+.img-circle {
+  object-fit: cover;
+}

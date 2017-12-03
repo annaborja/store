@@ -41,6 +41,29 @@ en:
     account:
       title: 'Account'
       membership: 'Membership'
+    toggle_nav: 'Toggle navigation'
+
+  home:
+    carousel:
+      next: 'Next'
+      previous: 'Previous'
+    hero:
+      go_places: 'Go places you’ve never been before'
+      make_memories: 'Make memories you’ll never forget'
+      meet_people: 'Meet new friends'
+    subscriptions:
+      basic:
+        description: >
+          Attend private parties every other Friday at the most popular bars
+          in SF—and bring your friends!
+      classic:
+        description: >
+          Jump to the head of the line at the most popular restaurants in San Francisco.
+      modern:
+        description: >
+          Gain VIP access to events, concerts, and private lounges across the Bay Area
+          and a chauffeur whenever you need one.
+      subscribe: 'Subscribe &raquo;'
 
   membership:
     title:
