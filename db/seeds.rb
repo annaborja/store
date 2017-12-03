@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!({
-  email: 'foo@bar.com',
+  email: 'foo@baz.com',
   password: 'password',
   password_confirmation: 'password',
 }) if User.count == 0
@@ -36,11 +36,7 @@ user_id = User.first.id
 
   MembershipLevel.create!(attrs)
 end.each do |membership_level|
-  next if Membership.where(
-    membership_level_id: membership_level.id,
-    user_id: user_id,
-    canceled_at: nil
-  ).count > 0
+  next if Membership.active.where(membership_level_id: membership_level.id, user_id: user_id).count > 0
 
   Membership.create!({
     membership_level_id: membership_level.id,

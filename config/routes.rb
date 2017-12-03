@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  get 'membership', to: 'memberships#show', as: 'membership'
+  get 'memberships', to: 'memberships#show', as: 'membership'
 
   resources :memberships, only: [:create, :new]
 

@@ -59,4 +59,11 @@ en:
     purchase: 'Purchase'
     purchased: 'Purchased'
     purchase_form:
-      choose_level: 'Choose your membership level'
+      error:
+        already_member: 'You are already a %{level} member.'
+        blank_level: 'Please choose a membership level.'
+        invalid_level: 'Invalid membership level.'
+        invalid_num_guests: 'Please enter the number of guests you’d like to include in your membership.'
+      choose_level: 'Choose your membership level:'
+      how_many_guests: 'How many guests will you be bringing?'
+      level_choice: '%{name} – %{price}'

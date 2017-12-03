@@ -1,22 +1,37 @@
 <%= form_tag memberships_path do %>
-  <% if flash[:error].present? %>
-    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+  <% if flash[:errors].present? %>
+    <div class="alert alert-danger" role="alert">
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
   <div>
+    <%= label_tag 'level', t('membership.purchase_form.choose_level') %>
     <%= select_tag 'level',
       options_for_select(
         @membership_levels.map do |membership_level|
-          [t("membership.level.#{membership_level.name}.name"), membership_level.name]
-        end
+          [
+            t('membership.purchase_form.level_choice',
+              name: t("membership.level.#{membership_level.name}.name"),
+              price: membership_level.usd_cost
+            ),
+            membership_level.name,
+          ]
+        end,
+        @level
       ),
       class: 'js-select-level',
-      prompt: t('membership.purchase_form.choose_level'),
+      include_blank: true,
       required: true
     %>
   </div>
 
   <div>
+    <%= label_tag 'level', t('membership.purchase_form.how_many_guests') %>
     <%= number_field_tag 'num_guests', 0, class: 'js-num-guests', max: 1000, min: 0 %>
   </div>
 

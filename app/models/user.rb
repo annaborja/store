@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :membership_levels, through: :memberships
+
+  def membership_level_names
+    membership_levels.pluck(:name)
+  end
 end
