@@ -23,29 +23,45 @@ class MembershipsController < ApplicationController
 
     flash[:errors] << I18n.t('membership.purchase_form.error.already_member',
       level: I18n.t("membership.level.#{membership_level.name}.name"),
-    ) if Membership.active.where(membership_level_id: membership_level.id, user_id: user_id).count > 0
+    ) if Membership.active.where(
+      membership_level_id: membership_level.id,
+      user_id: user_id
+    ).count > 0
 
     return redirect_to(new_membership_path) if flash[:errors].length > 0
 
+    gateway = GatewayCustomer::GATEWAY.fetch(:stripe)
     membership = Membership.new(
+      gateway: gateway,
       membership_level_id: membership_level.id,
-      user_id: user_id,
       num_guests: num_guests,
+      user_id: user_id,
     )
 
-    # customer = Stripe::Customer.create(
-    #   email: params[:stripeEmail],
-    #   source: params[:stripeToken],
-    # )
+    customer_id = if current_user.stripe_customer
+      current_user.stripe_customer.customer_id
+    else
+      customer = Stripe::Customer.create(
+        email: params[:stripeEmail],
+        source: params[:stripeToken],
+      )
 
-    # charge = Stripe::Charge.create(
-    #   :customer    => customer.id,
-    #   :amount      => membership.usd_cost,
-    #   :description => 'Rails Stripe customer',
-    #   :currency    => 'usd'
-    # )
+      GatewayCustomer.create!(
+        customer_id: customer.id,
+        gateway: gateway,
+        user_id: user_id,
+      ).customer_id
+    end
 
-    # membership.save!
+    subscription = Stripe::Subscription.create(
+      customer: customer_id,
+      items: [{
+        plan: membership_level.subscription_plan_id,
+      }],
+    )
+
+    membership.subscription_id = subscription.id
+    membership.save!
   rescue Stripe::CardError => e
     flash[:errors] = [e.message]
 

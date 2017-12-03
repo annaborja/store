@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203025154) do
+ActiveRecord::Schema.define(version: 20171203062908) do
+
+  create_table "gateway_customers", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "gateway", null: false
+    t.string "customer_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gateway", "customer_id"], name: "index_gateway_customers_on_gateway_and_customer_id", unique: true
+    t.index ["user_id", "gateway", "deleted_at"], name: "index_gateway_customers_on_user_id_and_gateway_and_deleted_at"
+  end
 
   create_table "membership_levels", force: :cascade do |t|
     t.string "name", null: false
@@ -19,7 +30,9 @@ ActiveRecord::Schema.define(version: 20171203025154) do
     t.integer "additional_guest_usd_cost", default: 1999, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subscription_plan_id", null: false
     t.index ["name"], name: "index_membership_levels_on_name", unique: true
+    t.index ["subscription_plan_id"], name: "index_membership_levels_on_subscription_plan_id", unique: true
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -29,6 +42,9 @@ ActiveRecord::Schema.define(version: 20171203025154) do
     t.datetime "canceled_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gateway", null: false
+    t.string "subscription_id", null: false
+    t.index ["gateway", "subscription_id"], name: "index_memberships_on_gateway_and_subscription_id", unique: true
     t.index ["user_id", "membership_level_id", "canceled_at"], name: "index_memberships_on_ids_and_canceled_at"
   end
 

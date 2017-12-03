@@ -12,35 +12,24 @@ User.create!({
   password_confirmation: 'password',
 }) if User.count == 0
 
-user_id = User.first.id
-
 [{
   name: 'basic',
+  subscription_plan_id: 'basic-monthly-usd',
   usd_cost: 1999,
   num_free_guests: 0,
   additional_guest_usd_cost: 1999,
 }, {
-  name: 'modern',
+  name: 'classic',
+  subscription_plan_id: 'classic-monthly-usd',
   usd_cost: 9999,
   num_free_guests: 5,
   additional_guest_usd_cost: 1999,
 }, {
-  name: 'classic',
+  name: 'modern',
+  subscription_plan_id: 'modern-monthly-usd',
   usd_cost: 19999,
   num_free_guests: 5,
   additional_guest_usd_cost: 1999,
-}].map do |attrs|
-  membership_level = MembershipLevel.find_by(name: attrs[:name])
-
-  next membership_level unless membership_level.nil?
-
-  MembershipLevel.create!(attrs)
-end.each do |membership_level|
-  next if Membership.active.where(membership_level_id: membership_level.id, user_id: user_id).count > 0
-
-  Membership.create!({
-    membership_level_id: membership_level.id,
-    user_id: user_id,
-    num_guests: membership_level.num_free_guests + Random.new.rand(-3..3),
-  })
-end
+}]
+  .select { |attrs| MembershipLevel.find_by(name: attrs[:name]).nil? }
+  .each { |attrs| MembershipLevel.create!(attrs) }

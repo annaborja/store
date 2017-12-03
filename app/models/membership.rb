@@ -4,9 +4,9 @@ class Membership < ApplicationRecord
 
   scope :active, -> { where(canceled_at: nil) }
 
-  validates :membership_level_id, presence: true
-  validates :user_id, presence: true
+  validates :membership_level_id, numericality: { only_integer: true }
   validates :num_guests, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :user_id, numericality: { only_integer: true }
 
   def usd_cost
     membership_level.usd_cost +
