@@ -1,3 +1,3 @@
 class MembershipLevel < ApplicationRecord
-  DEFAULT_LEVEL = 'basic'.freeze
+  has_many :memberships
 end

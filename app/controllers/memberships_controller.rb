@@ -30,7 +30,7 @@ class MembershipsController < ApplicationController
   end
 
   def show
-    @has_membership = !!current_user.membership_level
+    @user_membership_level_names = current_user.membership_levels.pluck(:name)
     @membership_levels = MembershipLevel.all.order(usd_cost: :asc)
   end
 end

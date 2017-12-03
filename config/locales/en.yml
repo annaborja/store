@@ -44,7 +44,7 @@ en:
 
   membership:
     title:
-      is_member: 'Thank you for being a %{level} member'
+      is_member: 'Thank you for being a member'
       is_not_member: 'Become a member'
     level:
       basic:
@@ -57,5 +57,6 @@ en:
         name: 'Modern'
         description: 'Modern, elegant, sleek, sophisticated.'
     purchase: 'Purchase'
+    purchased: 'Purchased'
     purchase_form:
       choose_level: 'Choose your membership level'

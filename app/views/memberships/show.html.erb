@@ -1,6 +1,6 @@
 <h1><%=
-  if @has_membership
-    t('membership.title.is_member', level: t("membership.level.#{current_user.membership_level.name}.name"))
+  if @user_membership_level_names.length > 0
+    t('membership.title.is_member')
   else
     t('membership.title.is_not_member')
   end
@@ -12,8 +12,12 @@
   <p><%= t("membership.level.#{membership_level.name}.description") %></p>
   <p><strong><%= membership_level.usd_cost %></strong></p>
 
-  <%= link_to t('membership.purchase'), new_membership_path(level: membership_level.name),
-    class: 'btn btn-default',
-    role: 'button'
-  %>
+  <% if @user_membership_level_names.include?(membership_level.name) %>
+    <p><span class="label label-success"><%= t('membership.purchased') %></span></p>
+  <% else %>
+    <%= link_to t('membership.purchase'), new_membership_path(level: membership_level.name),
+      class: 'btn btn-default',
+      role: 'button'
+    %>
+  <% end %>
 <% end %>

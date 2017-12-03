@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :membership_level, optional: true
+  has_many :memberships
+  has_many :membership_levels, through: :memberships
 end
