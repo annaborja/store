@@ -1,0 +1,19 @@
+<h1><%=
+  if @has_membership
+    t('membership.title.is_member', level: t("membership.level.#{current_user.membership_level.name}.name"))
+  else
+    t('membership.title.is_not_member')
+  end
+%></h1>
+
+<% @membership_levels.each do |membership_level| %>
+  <h2><%= t("membership.level.#{membership_level.name}.name") %></h2>
+
+  <p><%= t("membership.level.#{membership_level.name}.description") %></p>
+  <p><strong><%= membership_level.usd_cost %></strong></p>
+
+  <%= link_to t('membership.purchase'), new_membership_path(level: membership_level.name),
+    class: 'btn btn-default',
+    role: 'button'
+  %>
+<% end %>

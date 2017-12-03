@@ -1,0 +1,28 @@
+<%= form_tag memberships_path do %>
+  <% if flash[:error].present? %>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+  <% end %>
+
+  <div>
+    <%= select_tag 'level',
+      options_for_select(
+        @membership_levels.map do |membership_level|
+          [t("membership.level.#{membership_level.name}.name"), membership_level.name]
+        end
+      ),
+      class: 'js-select-level',
+      prompt: t('membership.purchase_form.choose_level'),
+      required: true
+    %>
+  </div>
+
+  <div>
+    <%= number_field_tag 'num_guests', 0, class: 'js-num-guests', max: 1000, min: 0 %>
+  </div>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="js-stripe-button stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="500"
+          data-locale="auto"></script>
+<% end %>

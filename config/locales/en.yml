@@ -37,23 +37,25 @@ en:
       log_in: 'Log In'
       log_out: 'Log Out'
 
-  account:
-    nav:
+  nav:
+    account:
       title: 'Account'
       membership: 'Membership'
-    membership:
-      title:
-        is_member: 'Thank you for being a %{level} member'
-        is_not_member: 'Become a member'
 
-  membership_level:
-    basic:
-      name: 'Basic'
-      description: 'The most basic of basics.'
-    classic:
-      name: 'Classic'
-      description: 'Classy classy classy.'
-    modern:
-      name: 'Modern'
-      description: 'Modern, elegant, sleek, sophisticated.'
+  membership:
+    title:
+      is_member: 'Thank you for being a %{level} member'
+      is_not_member: 'Become a member'
+    level:
+      basic:
+        name: 'Basic'
+        description: 'The most basic of basics.'
+      classic:
+        name: 'Classic'
+        description: 'Classy classy classy.'
+      modern:
+        name: 'Modern'
+        description: 'Modern, elegant, sleek, sophisticated.'
     purchase: 'Purchase'
+    purchase_form:
+      choose_level: 'Choose your membership level'
