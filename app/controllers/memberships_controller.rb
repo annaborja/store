@@ -97,8 +97,10 @@ class MembershipsController < ApplicationController
 
     return redirect_to(membership_path) if @membership_levels.length == 0
 
-    @level = params[:level].try(:downcase)
+    level = params[:level].try(:downcase)
+
     @gateway_customers = current_user.gateway_customers
+    @prepopulated_level = @membership_levels.find_by(name: level) if level.present?
   end
 
   def show

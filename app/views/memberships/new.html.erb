@@ -1,4 +1,10 @@
-<h1><%= t('membership.purchase_form.title').html_safe %></h1>
+<h1><%= t('membership.purchase_form.title',
+  level: if @prepopulated_level.present?
+    t("membership.level.#{@prepopulated_level.name}.name")
+  else
+    ''
+  end
+).html_safe %></h1>
 
 <%= form_tag memberships_path, class: 'form-styled' do %>
   <% if flash[:errors].present? -%>
@@ -27,9 +33,9 @@
             membership_level.name
           ]
         end,
-        @level
+        @prepopulated_level.name
       ),
-      class: 'js-select-level',
+      class: 'js-membership-purchase-form-select-level',
       include_blank: true,
       required: true
     %>
@@ -37,10 +43,13 @@
 
   <fieldset>
     <%= label_tag 'num_guests', t('membership.purchase_form.how_many_guests') %>
-    <%= number_field_tag 'num_guests', 0, class: 'js-num-guests', max: 1000, min: 0 %>
+    <%= number_field_tag 'num_guests', 0, class: 'js-membership-purchase-form-num-guests', max: 1000, min: 0 %>
   </fieldset>
 
   <div class="well">
+    <h2 class="js-membership-purchase-form-cost"><%=
+      Money.new(@prepopulated_level.usd_cost, 'USD').format
+    %></h2>
   </div>
 
   <% if @gateway_customers.length > 0 -%>
@@ -52,7 +61,7 @@
     %>
   <% else -%>
     <script src="https://checkout.stripe.com/checkout.js"
-      class="js-stripe-button stripe-button"
+      class="js-membership-purchase-form-stripe-button stripe-button"
       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
       data-description="A month's subscription"
       data-amount="500"
