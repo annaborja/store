@@ -20,6 +20,11 @@ h1 {
   margin-bottom: 15px;
 }
 
+input[type=number] {
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
 main.container {
   padding: 90px 15px 40px 15px;
 }

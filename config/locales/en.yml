@@ -112,6 +112,7 @@ en:
         description: 'Modern, elegant, sleek, sophisticated.'
     n_guests_m_free: '%{n_guests} (%{m} free)'
     purchase_form:
+      title: 'Become a <span class="js-membership-purchase-form-title-level"></span> member'
       error:
         already_member: 'You are already a %{level} member.'
         blank_level: 'Please choose a membership level.'

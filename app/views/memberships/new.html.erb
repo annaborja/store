@@ -1,3 +1,5 @@
+<h1><%= t('membership.purchase_form.title').html_safe %></h1>
+
 <%= form_tag memberships_path, class: 'form-styled' do %>
   <% if flash[:errors].present? -%>
     <div class="alert alert-danger" role="alert">
@@ -34,9 +36,12 @@
   </fieldset>
 
   <fieldset>
-    <%= label_tag 'level', t('membership.purchase_form.how_many_guests') %>
+    <%= label_tag 'num_guests', t('membership.purchase_form.how_many_guests') %>
     <%= number_field_tag 'num_guests', 0, class: 'js-num-guests', max: 1000, min: 0 %>
   </fieldset>
+
+  <div class="well">
+  </div>
 
   <% if @gateway_customers.length > 0 -%>
     <%= submit_tag t('membership.purchase_form.submit'),
