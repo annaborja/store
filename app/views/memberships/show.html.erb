@@ -44,7 +44,7 @@
             interval: t('membership.interval.month')
           ) %></strong></li>
 
-          <% if membership_level.num_free_guests > 0 -%>
+          <% if membership_level.num_free_guests > 0 && membership.num_guests > 0 -%>
             <li><%= t('membership.n_guests_m_free',
               n_guests: pluralize(membership.num_guests, t('membership.guest')),
               m: [membership.num_guests, membership_level.num_free_guests].min

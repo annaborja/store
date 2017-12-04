@@ -36,6 +36,19 @@
         @prepopulated_level.name
       ),
       class: 'js-membership-purchase-form-select-level',
+      data: (
+        @membership_levels.map do |membership_level|
+          [
+            membership_level.name,
+            {
+              additional_guest_usd_cost: membership_level.additional_guest_usd_cost,
+              name: t("membership.level.#{membership_level.name}.name"),
+              num_free_guests: membership_level.num_free_guests,
+              usd_cost: membership_level.usd_cost
+            }
+          ]
+        end.to_h
+      ),
       include_blank: true,
       required: true
     %>
@@ -63,8 +76,6 @@
     <script src="https://checkout.stripe.com/checkout.js"
       class="js-membership-purchase-form-stripe-button stripe-button"
       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-      data-description="A month's subscription"
-      data-amount="500"
       data-locale="<%= I18n.locale %>"></script>
   <% end -%>
 <% end %>
