@@ -17,7 +17,7 @@
 //= require accounting
 //= require_tree .
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   const $cost = $('.js-membership-purchase-form-cost');
   const $numGuests = $('.js-membership-purchase-form-num-guests');
   const $selectLevel = $('.js-membership-purchase-form-select-level');
