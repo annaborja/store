@@ -1,6 +1,14 @@
 class MembershipsController < ApplicationController
   before_action :authenticate_user!
 
+  def complete_successful_create(membership_level)
+    flash[:notice] = I18n.t('membership.purchase_form.success',
+      level: I18n.t("membership.level.#{membership_level.name}.name")
+    )
+
+    redirect_to memberships_path
+  end
+
   def create
     level = params[:level]
     num_guests = params[:num_guests].to_i
@@ -31,6 +39,15 @@ class MembershipsController < ApplicationController
 
     return redirect_to(new_membership_path) if flash[:errors].length > 0
 
+    customer_id = if current_user.stripe_customer
+      current_user.stripe_customer.customer_id
+    else
+      Stripe::Customer.create(
+        email: params[:stripeEmail],
+        source: params[:stripeToken]
+      ).id
+    end
+
     gateway = GatewayCustomer::GATEWAY.fetch(:stripe)
     membership = Membership.new(
       gateway: gateway,
@@ -38,22 +55,6 @@ class MembershipsController < ApplicationController
       num_guests: num_guests,
       user_id: user_id
     )
-
-    customer_id = if current_user.stripe_customer
-      current_user.stripe_customer.customer_id
-    else
-      customer = Stripe::Customer.create(
-        email: params[:stripeEmail],
-        source: params[:stripeToken]
-      )
-
-      GatewayCustomer.create!(
-        customer_id: customer.id,
-        gateway: gateway,
-        user_id: user_id
-      ).customer_id
-    end
-
     subscription = Stripe::Subscription.create(
       customer: customer_id,
       items: [{
@@ -68,11 +69,21 @@ class MembershipsController < ApplicationController
     membership.subscription_id = subscription.id
     membership.save!
 
-    flash[:notice] = I18n.t('membership.purchase_form.success',
-      level: I18n.t("membership.level.#{membership_level.name}.name")
+    # Only save the Stripe customer ID if the Stripe subscription was successfully created.
+    GatewayCustomer.create!(
+      customer_id: customer_id,
+      gateway: gateway,
+      user_id: user_id
     )
 
-    redirect_to memberships_path
+    complete_successful_create(membership_level)
+  rescue ActiveRecord::ActiveRecordError => e
+    # If one of our db calls errored out,
+    # that means that our Stripe calls have already succeeded,
+    # so log the db error and show the user a success result.
+    Rails.logger.error(e)
+
+    complete_successful_create(membership_level)
   rescue Stripe::CardError => e
     flash[:errors] = [e.message]
 
