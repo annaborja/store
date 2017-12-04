@@ -1,3 +1,22 @@
 // Place all the styles related to the memberships controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.memberships_new {
+  background-color: $gray-light;
+}
+
+.memberships_show {
+  text-align: center;
+
+  .subscriptions {
+    margin: 0 auto;
+    max-width: 330px;
+  }
+}
+
+.well {
+  &.purchased {
+    background-color: $gray-medium;
+  }
+}

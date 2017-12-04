@@ -7,8 +7,18 @@ class User < ApplicationRecord
   has_many :membership_levels, through: :memberships
   has_many :gateway_customers
 
-  def membership_level_names
-    membership_levels.pluck(:name)
+  def member?
+    memberships.active.count > 0
+  end
+
+  def membership_for(level_name)
+    memberships
+      .active
+      .includes(:membership_level)
+      .where('membership_levels.name = ?', level_name)
+      .references(:membership_level)
+      .limit(1)
+      .first
   end
 
   def stripe_customer

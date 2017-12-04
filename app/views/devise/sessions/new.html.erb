@@ -1,5 +1,5 @@
-<%= form_for resource, as: resource_name, html: { class: 'form-auth' }, url: session_path(resource_name) do |f| %>
-  <h2 class="form-auth-heading"><%= t('authentication.login.title') %></h2>
+<%= form_for resource, as: resource_name, html: { class: 'form-styled' }, url: session_path(resource_name) do |f| %>
+  <h2 class="form-styled-heading"><%= t('authentication.login.title') %></h2>
 
   <fieldset class="input-sandwich">
     <%= f.label :email, class: 'sr-only' %>

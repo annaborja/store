@@ -88,13 +88,17 @@ en:
         description: >
           Gain VIP access to events, concerts, and private lounges across the Bay Area
           and a chauffeur whenever you need one.
-      subscribe: 'Subscribe &raquo;'
 
   membership:
     title:
-      is_member: 'Thank you for being a member'
+      is_member: 'Thank you for being a member!'
       is_not_member: 'Become a member'
+    cost_per_interval: '%{cost} per %{interval}'
+    free_guest: 'free guest'
+    free_trial_length: '%{length} free trial'
+    guest: guest
     interval:
+      day: 'day'
       month: 'month'
     level:
       basic:
@@ -106,17 +110,19 @@ en:
       modern:
         name: 'Modern'
         description: 'Modern, elegant, sleek, sophisticated.'
-    purchase: 'Purchase'
-    purchased: 'Purchased'
+    n_guests_m_free: '%{n_guests} (%{m} free)'
     purchase_form:
       error:
         already_member: 'You are already a %{level} member.'
         blank_level: 'Please choose a membership level.'
         invalid_level: 'Invalid membership level.'
-        invalid_num_guests: 'Please enter the number of guests you’d like to include in your membership.'
+        invalid_num_guests: >
+          Please enter the number of guests you’d like to include in your membership.
       choose_level: 'Choose your membership level:'
-      how_many_guests: 'How many guests will you be bringing?'
-      level_choice: '%{name} – %{price} per %{interval}'
+      how_many_guests: 'How many guests?'
+      level_choice: '%{name} – %{info}'
       submit: 'Purchase'
       submitting: 'Processing...'
       success: 'Thank you! You are now a %{level} member.'
+    subscribe: 'Subscribe &raquo;'
+    subscribed: 'Subscribed'

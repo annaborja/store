@@ -1,23 +1,59 @@
 <h1><%=
-  if @user_membership_level_names.length > 0
+  if current_user.member?
     t('membership.title.is_member')
   else
     t('membership.title.is_not_member')
   end
 %></h1>
 
-<% @membership_levels.each do |membership_level| %>
-  <h2><%= t("membership.level.#{membership_level.name}.name") %></h2>
+<div class="subscriptions">
+  <% @membership_levels.each do |membership_level| -%>
+    <% membership = current_user.membership_for(membership_level.name) -%>
 
-  <p><%= t("membership.level.#{membership_level.name}.description") %></p>
-  <p><strong><%= membership_level.usd_cost %></strong></p>
+    <div class="well <% unless membership.nil? %>purchased<% end %>">
+      <h2><%= t("membership.level.#{membership_level.name}.name") %></h2>
 
-  <% if @user_membership_level_names.include?(membership_level.name) %>
-    <p><span class="label label-success"><%= t('membership.purchased') %></span></p>
-  <% else %>
-    <%= link_to t('membership.purchase'), new_membership_path(level: membership_level.name),
-      class: 'btn btn-default',
-      role: 'button'
-    %>
-  <% end %>
-<% end %>
+      <p><%= t("membership.level.#{membership_level.name}.description") %></p>
+
+      <% if membership.nil? -%>
+        <h3><%= t('membership.cost_per_interval',
+          cost: Money.new(membership_level.usd_cost, 'USD').format,
+          interval: t('membership.interval.month')
+        ) %></h3>
+
+        <ul class="list-unstyled">
+          <% if membership_level.num_free_guests > 0 -%>
+            <li><%= pluralize membership_level.num_free_guests, t('membership.free_guest') %></li>
+          <% end -%>
+
+          <li><strong><%= t('membership.free_trial_length',
+            length: pluralize(membership_level.num_trial_days, t('membership.interval.day'))
+          ) %></strong></li>
+        </ul>
+
+        <%= link_to t('membership.subscribe').html_safe, new_membership_path(level: membership_level.name),
+          class: 'btn btn-default',
+          role: 'button'
+        %>
+      <% else -%>
+        <h3><span class="label label-primary"><%= t('membership.subscribed') %></span></h3>
+
+        <ul class="list-unstyled">
+          <li><strong><%= t('membership.cost_per_interval',
+            cost: Money.new(membership.usd_cost, 'USD').format,
+            interval: t('membership.interval.month')
+          ) %></strong></li>
+
+          <% if membership_level.num_free_guests > 0 -%>
+            <li><%= t('membership.n_guests_m_free',
+              n_guests: pluralize(membership.num_guests, t('membership.guest')),
+              m: [membership.num_guests, membership_level.num_free_guests].min
+            ) %></li>
+          <% else -%>
+            <li><%= pluralize membership.num_guests, t('membership.guest') %></li>
+          <% end -%>
+        </ul>
+    <% end -%>
+    </div>
+  <% end -%>
+</div>

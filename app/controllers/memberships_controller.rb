@@ -81,7 +81,7 @@ class MembershipsController < ApplicationController
 
   def new
     @membership_levels = MembershipLevel
-      .where.not(name: current_user.membership_level_names)
+      .where.not(name: current_user.membership_levels.pluck(:name))
       .order(usd_cost: :asc)
 
     return redirect_to(membership_path) if @membership_levels.length == 0
@@ -92,6 +92,5 @@ class MembershipsController < ApplicationController
 
   def show
     @membership_levels = MembershipLevel.all.order(usd_cost: :asc)
-    @user_membership_level_names = current_user.membership_level_names
   end
 end

@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass' # CSS styling.
 gem 'devise' # User authentication.
 gem 'jquery-rails' # Required for Bootstrap.
+gem 'money' # Displaying monetary values.
 gem 'stripe' # Credit card processing.
 
 group :development, :test do
