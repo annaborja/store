@@ -1,9 +1,12 @@
+.registrations_create,
+.registrations_new,
 .sessions_new {
   background-color: $gray-light;
 }
 
 .devise-links {
-  margin-top: 10px;
+  margin-top: 15px;
+  text-align: center;
 }
 
 .form-auth {
@@ -11,9 +14,8 @@
   max-width: 330px;
   padding: 15px;
 
-  .checkbox,
   .form-auth-heading {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .form-control {
@@ -30,16 +32,31 @@
     }
   }
 
-  input[type="email"] {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-bottom: -1px;
-  }
-
-  input[type="password"] {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  fieldset {
     margin-bottom: 10px;
+
+    .checkbox {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &.input-sandwich {
+      input[type="email"],
+      input[type="password"] {
+        &:first-of-type {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          margin-bottom: -1px;
+        }
+
+        &:last-of-type {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          margin-bottom: 10px;
+        }
+      }
+    }
   }
 }
 

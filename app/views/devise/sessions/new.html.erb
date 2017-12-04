@@ -1,27 +1,29 @@
 <%= form_for resource, as: resource_name, html: { class: 'form-auth' }, url: session_path(resource_name) do |f| %>
   <h2 class="form-auth-heading"><%= t('authentication.login.title') %></h2>
 
-  <%= f.label :email, class: 'sr-only' %>
-  <%= f.email_field :email,
-    autofocus: true,
-    class: 'form-control',
-    placeholder: t('activerecord.attributes.user.email'),
-    required: true
-  %>
+  <fieldset class="input-sandwich">
+    <%= f.label :email, class: 'sr-only' %>
+    <%= f.email_field :email,
+      autofocus: true,
+      class: 'form-control',
+      placeholder: t('authentication.placeholder.email'),
+      required: true
+    %>
 
-  <%= f.label :password, class: 'sr-only' %>
-  <%= f.password_field :password,
-    autocomplete: 'off',
-    class: 'form-control',
-    placeholder: t('activerecord.attributes.user.password'),
-    required: true
-  %>
+    <%= f.label :password, class: 'sr-only' %>
+    <%= f.password_field :password,
+      autocomplete: 'off',
+      class: 'form-control',
+      placeholder: t('authentication.placeholder.password.login'),
+      required: true
+    %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="checkbox">
-      <label><%= f.check_box :remember_me %> <%= t('authentication.remember_me') %></label>
-    </div>
-  <% end -%>
+    <% if devise_mapping.rememberable? -%>
+      <div class="checkbox">
+        <label><%= f.check_box :remember_me %> <%= t('authentication.remember_me') %></label>
+      </div>
+    <% end -%>
+  </fieldset>
 
   <%= f.submit t('authentication.login.submit'), class: 'btn btn-lg btn-primary btn-block' %>
 

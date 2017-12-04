@@ -39,19 +39,28 @@ en:
       user:
         email: 'Email address'
         password: 'Password'
+        password_confirmation: 'Password confirmation'
 
   authentication:
     forgot_password:
       nav: 'Forgot your password?'
     login:
-      title: 'Please log in'
+      title: 'Log into your account'
       nav: 'Log In'
       submit: 'Log In'
     logout:
       nav: 'Log Out'
+    placeholder:
+      email: 'Email address'
+      password_confirmation: 'Confirm password'
+      password:
+        create: 'Password (%{n} characters minimum)'
+        login: 'Password'
     remember_me: 'Remember me'
     signup:
+      title: 'Create an account'
       nav: 'Sign Up'
+      submit: 'Sign Up'
 
   nav:
     account:
