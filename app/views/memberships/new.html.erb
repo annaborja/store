@@ -33,7 +33,7 @@
             membership_level.name
           ]
         end,
-        @prepopulated_level.name
+        @prepopulated_level.try(:name)
       ),
       class: 'js-membership-purchase-form-select-level',
       data: (
@@ -61,7 +61,7 @@
 
   <div class="well">
     <h2 class="js-membership-purchase-form-cost"><%=
-      Money.new(@prepopulated_level.usd_cost, 'USD').format
+      Money.new(@prepopulated_level.try(:usd_cost) || 0, 'USD').format
     %></h2>
   </div>
 
