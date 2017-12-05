@@ -1,5 +1,9 @@
 .memberships_new {
   text-align: center;
+
+  h1 {
+    margin-bottom: 15px;
+  }
 }
 
 .memberships_show {
@@ -13,6 +17,6 @@
 
 .well {
   &.purchased {
-    background-color: $gray-medium;
+    background-color: $blue-translucent;
   }
 }

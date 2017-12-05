@@ -1,14 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :authenticate_user!
 
-  def complete_successful_create(membership_level)
-    flash[:notice] = I18n.t('membership.purchase_form.success',
-      level: I18n.t("membership.level.#{membership_level.name}.name")
-    )
-
-    redirect_to memberships_path
-  end
-
   def create
     level = params[:level]
     num_guests = params[:num_guests].to_i
@@ -105,5 +97,15 @@ class MembershipsController < ApplicationController
 
   def show
     @membership_levels = MembershipLevel.all.order(usd_cost: :asc)
+  end
+
+  private
+
+  def complete_successful_create(membership_level)
+    flash[:notice] = I18n.t('membership.purchase_form.success',
+      level: I18n.t("membership.level.#{membership_level.name}.name")
+    )
+
+    redirect_to memberships_path
   end
 end

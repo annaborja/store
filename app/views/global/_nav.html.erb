@@ -21,7 +21,7 @@
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
+        <%- if user_signed_in? %>
           <li class="dropdown">
             <a href="#"
               aria-expanded="false"
@@ -39,7 +39,7 @@
           </li>
         <% else %>
           <li><%= link_to t('authentication.login.nav'), new_user_session_path %></li>
-        <% end %>
+        <% end -%>
       </ul>
     </div>
   </div>

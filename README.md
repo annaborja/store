@@ -1,24 +1,27 @@
-# README
+# Old Relic Social Club
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Rails e-commerce web app.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+Create a sandbox directory.
 
-* System dependencies
+```bash
+mkdir ~/my_sandbox && cd ~/my_sandbox
+```
 
-* Configuration
+Clone the repo.
 
-* Database creation
+```bash
+git clone git@github.com:annaborja/store.git && cd store
+```
 
-* Database initialization
+Run the app.
 
-* How to run the test suite
+```bash
+PUBLISHABLE_KEY=<stripe_api_publishable_key> SECRET_KEY=<stripe_api_secret_key> rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Navigate to http://localhost:3000/ in your web browser.
 
-* Deployment instructions
-
-* ...
+**PROFIT.**

@@ -1,10 +1,10 @@
 <%= form_for resource, as: resource_name, html: { class: 'form-styled' }, url: registration_path(resource_name) do |f| %>
-  <% if resource.errors.present? %>
+  <%- if resource.errors.present? %>
     <div class="alert alert-danger">
       <ul class="text-left">
-        <% resource.errors.full_messages.each do |msg| %>
+        <%- resource.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
-        <% end %>
+        <% end -%>
       </ul>
     </div>
   <% end %>
