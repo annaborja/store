@@ -109,7 +109,7 @@ en:
         description: 'Classy classy classy.'
       modern:
         name: 'Modern'
-        description: 'Modern, elegant, sleek, sophisticated.'
+        description: 'Elegant, sleek, sophisticated, super cool.'
     n_guests_m_free: '%{n_guests} (%{m} free)'
     purchase_form:
       title: 'Become a <span class="js-membership-purchase-form-title-level">%{level}</span> member'

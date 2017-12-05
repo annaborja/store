@@ -16,6 +16,16 @@ Clone the repo.
 git clone git@github.com:annaborja/store.git && cd store
 ```
 
+Set up your local database.
+```bash
+# Create your development db and run all migrations.
+rake db:create
+rake db:migrate
+
+# Seed your dev db with dummy data.
+rake db:seed
+```
+
 Run the app (you will need our Stripe API test keys in order to make transactions through Stripe).
 
 ```bash
