@@ -42,6 +42,7 @@ group :development, :test do
   gem 'factory_bot_rails' # For generating test fixtures.
   gem 'rails-controller-testing' # For controller test conveience methods.
   gem 'rspec-rails' # For unit and integration testing.
+  gem 'rubocop', require: false # For Ruby linting.
   gem 'selenium-webdriver' # For acceptance testing.
 end
 

@@ -17,6 +17,12 @@ Clone the repo.
 git clone git@github.com:annaborja/store.git && cd store
 ```
 
+Run Bundler to install necessary gems.
+
+```bash
+bundle
+```
+
 Set up your local database.
 ```bash
 # Create your development db and run all migrations.
@@ -37,13 +43,24 @@ Navigate to http://localhost:3000/ in your web browser.
 
 **PROFIT.**
 
+## Development
+
+We use [Rubocop](https://github.com/bbatsov/rubocop) for Ruby linting.
+Make sure to run the linter before committing your code.
+
+```bash
+# Run Rubocop on the codebase.
+rubocop
+
+# Run Rubocop and let it autocorrect as many errors as it can.
+rubocop -a
+```
+
 ## Testing
 
 We use [RSpec](http://rspec.info/) for unit and integration tests and
 [factory_bot](https://github.com/thoughtbot/factory_bot) for test fixtures.
 All PRs containing new code should also include specs for that code.
-
-### How to run tests
 
 ```bash
 # Run the entire test suite.

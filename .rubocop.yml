@@ -1,0 +1,19 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - 'db/schema.rb'
+    # - 'db/**/*'
+    # - 'config/**/*'
+    # - !ruby/regexp /old_and_unused\.rb$/
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
