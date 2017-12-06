@@ -102,6 +102,7 @@ en:
       make_memories: 'Make memories you’ll never forget'
       meet_people: 'Meet new friends'
     subscriptions:
+      title: Membership Levels
       basic:
         description: >
           Attend private parties every other Friday at the most popular bars

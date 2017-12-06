@@ -1,6 +1,7 @@
 # Old Relic Social Club
 
-A Rails e-commerce web app.
+An e-commerce web app. Back end built on [Ruby on Rails](http://rubyonrails.org/) and [SQLite](https://www.sqlite.org/).
+Front end built with [Bootstrap 3](https://getbootstrap.com/docs/3.3/), [jQuery](https://jquery.com/), and [HTML5 Boilerplate](https://html5boilerplate.com/).
 
 ## Getting Started
 
