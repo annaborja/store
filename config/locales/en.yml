@@ -72,6 +72,31 @@ en:
     carousel:
       next: 'Next'
       previous: 'Previous'
+    featurette:
+      one:
+        title: This is a cat.
+        subtitle: Super fluffy. Much meow.
+        description: >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+      two:
+        title: This is a dog.
+        subtitle: Sweetest little pit bull you’ll ever meet.
+        description: >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+      three:
+        title: Here’s another dog.
+        subtitle: Loves to fetch. Fears Christmas trees.
+        description: >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
     hero:
       go_places: 'Go places you’ve never been before'
       make_memories: 'Make memories you’ll never forget'
@@ -109,7 +134,7 @@ en:
         description: 'Classy classy classy.'
       modern:
         name: 'Modern'
-        description: 'Elegant, sleek, sophisticated, super cool.'
+        description: 'Sleek, sophisticated, super cool.'
     n_guests_m_free: '%{n_guests} (%{m} free)'
     purchase_form:
       title: 'Become a <span class="js-membership-purchase-form-title-level">%{level}</span> member'
