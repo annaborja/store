@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
 
+  has_many :gateway_customers
   has_many :memberships
   has_many :membership_levels, through: :memberships
-  has_many :gateway_customers
 
   def member?
     memberships.active.count > 0
