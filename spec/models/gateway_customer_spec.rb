@@ -56,31 +56,31 @@ describe GatewayCustomer do
   describe 'validations' do
     describe 'customer_id' do
       it 'validates for presence' do
-        expect(build :gateway_customer, customer_id: nil).to_not be_valid
-        expect(build :gateway_customer, customer_id: '').to_not be_valid
-        expect(build :gateway_customer, customer_id: 'customer_123').to be_valid
+        expect(build(:gateway_customer, customer_id: nil)).to_not be_valid
+        expect(build(:gateway_customer, customer_id: '')).to_not be_valid
+        expect(build(:gateway_customer, customer_id: 'customer_123')).to be_valid
       end
 
       it 'validates for maximum length' do
-        expect(build :gateway_customer, customer_id: 'a' * 256).to_not be_valid
-        expect(build :gateway_customer, customer_id: 'a' * 255).to be_valid
+        expect(build(:gateway_customer, customer_id: 'a' * 256)).to_not be_valid
+        expect(build(:gateway_customer, customer_id: 'a' * 255)).to be_valid
       end
     end
 
     describe 'gateway' do
       it 'validates for inclusion in a set of values' do
         expect(
-          build :gateway_customer, gateway: GatewayCustomer::GATEWAY.fetch(:stripe)
+          build(:gateway_customer, gateway: GatewayCustomer::GATEWAY.fetch(:stripe))
         ).to be_valid
-        expect(build :gateway_customer, gateway: 'foo').to_not be_valid
+        expect(build(:gateway_customer, gateway: 'foo')).to_not be_valid
       end
     end
 
     describe 'user_id' do
       it 'validates that it is an existing user ID' do
-        expect(build :gateway_customer, user_id: 1.5).to_not be_valid
-        expect(build :gateway_customer, user_id: 1).to_not be_valid
-        expect(build :gateway_customer, user_id: create(:user).id).to be_valid
+        expect(build(:gateway_customer, user_id: 1.5)).to_not be_valid
+        expect(build(:gateway_customer, user_id: 1)).to_not be_valid
+        expect(build(:gateway_customer, user_id: create(:user).id)).to be_valid
       end
     end
   end

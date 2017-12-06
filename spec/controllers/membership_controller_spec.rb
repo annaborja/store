@@ -8,8 +8,8 @@ describe MembershipsController do
 
     before do
       allow(I18n).to receive(:t) { |*args| args }
-      allow(Stripe::Customer).to receive(:create).and_return(double id: customer_id)
-      allow(Stripe::Subscription).to receive(:create).and_return(double id: subscription_id)
+      allow(Stripe::Customer).to receive(:create).and_return(double(id: customer_id))
+      allow(Stripe::Subscription).to receive(:create).and_return(double(id: subscription_id))
     end
 
     context 'when no user is logged in' do
@@ -46,7 +46,7 @@ describe MembershipsController do
           level: level,
           num_guests: num_guests,
           stripeEmail: stripe_email,
-          stripeToken: stripe_token,
+          stripeToken: stripe_token
         }
       end
 
@@ -66,13 +66,13 @@ describe MembershipsController do
         )
 
         subject.current_user.update!(gateway_customers: [
-          build(
-            :gateway_customer,
-            gateway: GatewayCustomer::GATEWAY.fetch(:stripe),
-            deleted_at: Time.current
-          ),
-          gateway_customer,
-        ])
+                                       build(
+                                         :gateway_customer,
+                                         gateway: GatewayCustomer::GATEWAY.fetch(:stripe),
+                                         deleted_at: Time.current
+                                       ),
+                                       gateway_customer
+                                     ])
       end
 
       context 'when no `level` param is passed in' do
@@ -81,8 +81,8 @@ describe MembershipsController do
 
           expect(response).to redirect_to new_membership_path
           expect(subject.flash[:errors]).to match_array([
-            ['membership.purchase_form.error.blank_level'],
-          ])
+                                                          ['membership.purchase_form.error.blank_level']
+                                                        ])
         end
       end
 
@@ -92,8 +92,8 @@ describe MembershipsController do
 
           expect(response).to redirect_to new_membership_path
           expect(subject.flash[:errors]).to match_array([
-            ['membership.purchase_form.error.invalid_num_guests'],
-          ])
+                                                          ['membership.purchase_form.error.invalid_num_guests']
+                                                        ])
         end
       end
 
@@ -105,8 +105,8 @@ describe MembershipsController do
 
           expect(response).to redirect_to new_membership_path
           expect(subject.flash[:errors]).to match_array([
-            ['membership.purchase_form.error.invalid_num_guests'],
-          ])
+                                                          ['membership.purchase_form.error.invalid_num_guests']
+                                                        ])
         end
       end
 
@@ -119,9 +119,9 @@ describe MembershipsController do
 
           expect(response).to redirect_to new_membership_path
           expect(subject.flash[:errors]).to match_array([
-            ['membership.purchase_form.error.blank_level'],
-            ['membership.purchase_form.error.invalid_num_guests'],
-          ])
+                                                          ['membership.purchase_form.error.blank_level'],
+                                                          ['membership.purchase_form.error.invalid_num_guests']
+                                                        ])
         end
       end
 
@@ -133,8 +133,8 @@ describe MembershipsController do
 
           expect(response).to redirect_to new_membership_path
           expect(subject.flash[:errors]).to match_array([
-            ['membership.purchase_form.error.invalid_level'],
-          ])
+                                                          ['membership.purchase_form.error.invalid_level']
+                                                        ])
         end
       end
 
@@ -146,11 +146,12 @@ describe MembershipsController do
 
           expect(response).to redirect_to new_membership_path
           expect(subject.flash[:errors]).to match_array([
-            [
-              'membership.purchase_form.error.already_member', {
-              level: ["membership.level.#{level}.name"],
-            }],
-          ])
+                                                          [
+                                                            'membership.purchase_form.error.already_member', {
+                                                              level: ["membership.level.#{level}.name"]
+                                                            }
+                                                          ]
+                                                        ])
         end
       end
 
@@ -169,14 +170,16 @@ describe MembershipsController do
 
             expect(response).to redirect_to memberships_path
             expect(subject.flash[:notice]).to match_array([
-              'membership.purchase_form.success', { level: ["membership.level.#{level}.name"] },
-            ])
+                                                            'membership.purchase_form.success', {
+                                                              level: ["membership.level.#{level}.name"]
+                                                            }
+                                                          ])
           end
 
           it 'creates a Stripe customer' do
             expect(Stripe::Customer).to receive(:create).with(
               email: stripe_email,
-              source: stripe_token,
+              source: stripe_token
             )
 
             post :create, params: params
@@ -186,10 +189,10 @@ describe MembershipsController do
             expect(Stripe::Subscription).to receive(:create).with(
               customer: customer_id,
               items: [{
-                plan: membership_level.subscription_plan_id,
+                plan: membership_level.subscription_plan_id
               }, {
                 plan: membership_level.guest_subscription_plan_id,
-                quantity: (membership_level.num_free_guests - num_guests.to_i).abs,
+                quantity: (membership_level.num_free_guests - num_guests.to_i).abs
               }],
               trial_period_days: membership_level.num_trial_days
             )
@@ -228,8 +231,10 @@ describe MembershipsController do
 
             expect(response).to redirect_to memberships_path
             expect(subject.flash[:notice]).to match_array([
-              'membership.purchase_form.success', { level: ["membership.level.#{level}.name"] },
-            ])
+                                                            'membership.purchase_form.success', {
+                                                              level: ["membership.level.#{level}.name"]
+                                                            }
+                                                          ])
           end
 
           it 'does not create a Stripe customer' do
@@ -242,10 +247,10 @@ describe MembershipsController do
             expect(Stripe::Subscription).to receive(:create).with(
               customer: saved_customer_id,
               items: [{
-                plan: membership_level.subscription_plan_id,
+                plan: membership_level.subscription_plan_id
               }, {
                 plan: membership_level.guest_subscription_plan_id,
-                quantity: (membership_level.num_free_guests - num_guests.to_i).abs,
+                quantity: (membership_level.num_free_guests - num_guests.to_i).abs
               }],
               trial_period_days: membership_level.num_trial_days
             )
@@ -311,8 +316,10 @@ describe MembershipsController do
 
           expect(response).to redirect_to memberships_path
           expect(subject.flash[:notice]).to match_array([
-            'membership.purchase_form.success', { level: ["membership.level.#{level}.name"] },
-          ])
+                                                          'membership.purchase_form.success', {
+                                                            level: ["membership.level.#{level}.name"]
+                                                          }
+                                                        ])
         end
 
         it 'logs the error' do
@@ -466,10 +473,10 @@ describe MembershipsController do
         get :show
 
         expect(assigns(:membership_levels)).to eq([
-          membership_level_1,
-          membership_level_3,
-          membership_level_2,
-        ])
+                                                    membership_level_1,
+                                                    membership_level_3,
+                                                    membership_level_2
+                                                  ])
       end
     end
   end

@@ -9,6 +9,6 @@ class AddSubscriptionInfoToMembershipsAndMembershipLevels < ActiveRecord::Migrat
     change_column :memberships, :subscription_id, :string, null: false
 
     add_index :membership_levels, :subscription_plan_id, unique: true
-    add_index :memberships, [:gateway, :subscription_id], unique: true
+    add_index :memberships, %i[gateway subscription_id], unique: true
   end
 end

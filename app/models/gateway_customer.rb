@@ -1,6 +1,6 @@
 class GatewayCustomer < ApplicationRecord
   GATEWAY = {
-    stripe: 'stripe'.freeze,
+    stripe: 'stripe'.freeze
   }.freeze
 
   belongs_to :user

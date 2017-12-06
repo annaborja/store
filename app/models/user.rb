@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :membership_levels, through: :memberships
 
   def member?
-    memberships.active.count > 0
+    memberships.active.count.positive?
   end
 
   def membership_for(level_name)

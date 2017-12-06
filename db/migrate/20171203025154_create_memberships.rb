@@ -9,7 +9,11 @@ class CreateMemberships < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :memberships, [:user_id, :membership_level_id, :canceled_at], name: 'index_memberships_on_ids_and_canceled_at'
+    add_index(
+      :memberships,
+      %i[user_id membership_level_id canceled_at],
+      name: 'index_memberships_on_ids_and_canceled_at'
+    )
 
     remove_column :users, :membership_level_id
     rename_column :membership_levels, :free_guests, :num_free_guests

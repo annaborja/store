@@ -54,30 +54,30 @@ describe Membership do
   describe 'validations' do
     describe 'membership_level_id' do
       it 'validates that it is an existing membership level ID' do
-        expect(build :membership, membership_level_id: 1.5).to_not be_valid
-        expect(build :membership, membership_level_id: 1).to_not be_valid
-        expect(build :membership, membership_level_id: create(:membership_level).id).to be_valid
+        expect(build(:membership, membership_level_id: 1.5)).to_not be_valid
+        expect(build(:membership, membership_level_id: 1)).to_not be_valid
+        expect(build(:membership, membership_level_id: create(:membership_level).id)).to be_valid
       end
     end
 
     describe 'num_guests' do
       it 'validates that it is an integer' do
-        expect(build :membership, num_guests: 1.5).to_not be_valid
-        expect(build :membership, num_guests: 1).to be_valid
+        expect(build(:membership, num_guests: 1.5)).to_not be_valid
+        expect(build(:membership, num_guests: 1)).to be_valid
       end
 
       it 'validates that the number is greater than or equal to 0' do
-        expect(build :membership, num_guests: -2).to_not be_valid
-        expect(build :membership, num_guests: 0).to be_valid
-        expect(build :membership, num_guests: 2).to be_valid
+        expect(build(:membership, num_guests: -2)).to_not be_valid
+        expect(build(:membership, num_guests: 0)).to be_valid
+        expect(build(:membership, num_guests: 2)).to be_valid
       end
     end
 
     describe 'user_id' do
       it 'validates that it is an existing user ID' do
-        expect(build :membership, user_id: 1.5).to_not be_valid
-        expect(build :membership, user_id: 1).to_not be_valid
-        expect(build :membership, user_id: create(:user).id).to be_valid
+        expect(build(:membership, user_id: 1.5)).to_not be_valid
+        expect(build(:membership, user_id: 1)).to_not be_valid
+        expect(build(:membership, user_id: create(:user).id)).to be_valid
       end
     end
   end

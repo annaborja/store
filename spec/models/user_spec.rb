@@ -58,29 +58,28 @@ describe User do
     context 'when the user has only canceled memberships' do
       it 'returns false' do
         expect(create(:user, memberships: [
-          build(:membership, canceled_at: Time.current),
-          build(:membership, canceled_at: Time.current),
-        ]).member?).to be(false)
+                        build(:membership, canceled_at: Time.current),
+                        build(:membership, canceled_at: Time.current)
+                      ]).member?).to be(false)
       end
     end
 
     context 'when the user has only non-canceled memberships' do
       it 'returns true' do
         expect(create(:user, memberships: [
-          build(:membership, canceled_at: nil),
-          build(:membership, canceled_at: nil),
-        ]).member?).to be(true)
+                        build(:membership, canceled_at: nil),
+                        build(:membership, canceled_at: nil)
+                      ]).member?).to be(true)
       end
-
     end
 
     context 'when the user has both canceled and non-canceled memberships' do
       it 'returns true' do
         expect(create(:user, memberships: [
-          build(:membership, canceled_at: Time.current),
-          build(:membership, canceled_at: nil),
-          build(:membership, canceled_at: Time.current),
-        ]).member?).to be(true)
+                        build(:membership, canceled_at: Time.current),
+                        build(:membership, canceled_at: nil),
+                        build(:membership, canceled_at: Time.current)
+                      ]).member?).to be(true)
       end
     end
   end
@@ -96,7 +95,7 @@ describe User do
           create(
             :user,
             memberships: [
-              build(:membership, membership_level: create(:membership_level), canceled_at: nil),
+              build(:membership, membership_level: create(:membership_level), canceled_at: nil)
             ]
           ).membership_for(membership_level_name)
         ).to be_nil
@@ -123,7 +122,7 @@ describe User do
             :user,
             memberships: [
               build(:membership, membership_level: create(:membership_level), canceled_at: nil),
-              membership,
+              membership
             ]
           ).membership_for(membership_level_name)
         ).to eq(membership)
@@ -138,7 +137,7 @@ describe User do
             memberships: [
               build(:membership, membership_level: membership_level, canceled_at: Time.current),
               membership,
-              build(:membership, membership_level: membership_level, canceled_at: Time.current),
+              build(:membership, membership_level: membership_level, canceled_at: Time.current)
             ]
           ).membership_for(membership_level_name)
         ).to eq(membership)
@@ -186,18 +185,18 @@ describe User do
       it "returns the user's non-deleted Stripe customer record" do
         expect(
           create(:user, gateway_customers: [
-            build(
-              :gateway_customer,
-              gateway: GatewayCustomer::GATEWAY.fetch(:stripe),
-              deleted_at: Time.current
-            ),
-            gateway_customer,
-            build(
-              :gateway_customer,
-              gateway: GatewayCustomer::GATEWAY.fetch(:stripe),
-              deleted_at: Time.current
-            ),
-          ]).stripe_customer
+                   build(
+                     :gateway_customer,
+                     gateway: GatewayCustomer::GATEWAY.fetch(:stripe),
+                     deleted_at: Time.current
+                   ),
+                   gateway_customer,
+                   build(
+                     :gateway_customer,
+                     gateway: GatewayCustomer::GATEWAY.fetch(:stripe),
+                     deleted_at: Time.current
+                   )
+                 ]).stripe_customer
         ).to eq(gateway_customer)
       end
     end

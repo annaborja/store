@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!({
-  email: 'foo@baz.com',
-  password: 'password',
-  password_confirmation: 'password',
-}) if User.count == 0
+if User.count.zero?
+  User.create!(email: 'foo@baz.com',
+               password: 'password',
+               password_confirmation: 'password')
+end
 
 [{
   name: 'basic',
@@ -19,7 +19,7 @@ User.create!({
   usd_cost: 1999,
   num_free_guests: 0,
   additional_guest_usd_cost: 1999,
-  num_trial_days: 15,
+  num_trial_days: 15
 }, {
   name: 'classic',
   subscription_plan_id: 'classic-monthly-usd',
@@ -27,15 +27,15 @@ User.create!({
   usd_cost: 9999,
   num_free_guests: 5,
   additional_guest_usd_cost: 1999,
-  num_trial_days: 15,
+  num_trial_days: 15
 }, {
   name: 'modern',
   subscription_plan_id: 'modern-monthly-usd',
   guest_subscription_plan_id: 'guest-monthly-usd',
-  usd_cost: 19999,
+  usd_cost: 19_999,
   num_free_guests: 5,
   additional_guest_usd_cost: 1999,
-  num_trial_days: 15,
+  num_trial_days: 15
 }]
   .select { |attrs| MembershipLevel.find_by(name: attrs[:name]).nil? }
   .each { |attrs| MembershipLevel.create!(attrs) }

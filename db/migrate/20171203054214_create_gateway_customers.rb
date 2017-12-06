@@ -9,7 +9,7 @@ class CreateGatewayCustomers < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :gateway_customers, [:user_id, :gateway, :deleted_at]
-    add_index :gateway_customers, [:gateway, :customer_id], unique: true
+    add_index :gateway_customers, %i[user_id gateway deleted_at]
+    add_index :gateway_customers, %i[gateway customer_id], unique: true
   end
 end

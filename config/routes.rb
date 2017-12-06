@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'memberships', to: 'memberships#show', as: 'membership'
 
-  resources :memberships, only: [:create, :new]
+  resources :memberships, only: %i[create new]
 
   devise_for :users, skip: [:sessions]
 
