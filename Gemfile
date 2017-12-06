@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw] # For debugging.
   gem 'capybara', '~> 2.13' # For acceptance testing.
   gem 'factory_bot_rails' # For generating test fixtures.
+  gem 'rails-controller-testing' # For controller test conveience methods.
   gem 'rspec-rails' # For unit and integration testing.
   gem 'selenium-webdriver' # For acceptance testing.
 end

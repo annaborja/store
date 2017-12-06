@@ -8,29 +8,33 @@ describe User do
   end
 
   describe 'relations' do
-    let(:user) { create :user }
-
     describe 'gateway_customers' do
+      let(:user) { create :user }
+
       it 'has associated gateway customers' do
         create :gateway_customer
         gateway_customers = Array.new(2) { create :gateway_customer, user: user }
         create :gateway_customer
 
-        expect(user.gateway_customers).to match(gateway_customers)
+        expect(user.gateway_customers).to match_array(gateway_customers)
       end
     end
 
     describe 'memberships' do
+      let(:user) { create :user }
+
       it 'has associated memberships' do
         create :membership
         memberships = Array.new(2) { create :membership, user: user }
         create :membership
 
-        expect(user.memberships).to match(memberships)
+        expect(user.memberships).to match_array(memberships)
       end
     end
 
     describe 'membership_levels' do
+      let(:user) { create :user }
+
       it 'has associated membership levels' do
         create :membership_level
         membership_levels = Array.new(2) { create :membership_level }
@@ -39,7 +43,7 @@ describe User do
         end
         create :membership_level
 
-        expect(user.membership_levels).to match(membership_levels)
+        expect(user.membership_levels).to match_array(membership_levels)
       end
     end
   end

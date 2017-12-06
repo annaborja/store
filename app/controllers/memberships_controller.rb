@@ -66,7 +66,7 @@ class MembershipsController < ApplicationController
       customer_id: customer_id,
       gateway: gateway,
       user_id: user_id
-    )
+    ) unless current_user.stripe_customer
 
     complete_successful_create(membership_level)
   rescue ActiveRecord::ActiveRecordError => e

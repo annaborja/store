@@ -16,7 +16,7 @@ describe MembershipLevel do
         memberships = Array.new(2) { create :membership, membership_level: membership_level }
         create :membership
 
-        expect(membership_level.memberships).to match(memberships)
+        expect(membership_level.memberships).to match_array(memberships)
       end
     end
   end

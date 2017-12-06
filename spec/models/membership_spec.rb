@@ -35,7 +35,7 @@ describe Membership do
         it 'returns only non-canceled memberships' do
           active_memberships = Array.new(2) { create :membership, canceled_at: nil }
 
-          expect(described_class.active).to match(active_memberships)
+          expect(described_class.active).to match_array(active_memberships)
         end
       end
 
@@ -45,7 +45,7 @@ describe Membership do
           active_memberships = Array.new(2) { create :membership, canceled_at: nil }
           create :membership, canceled_at: Time.current
 
-          expect(described_class.active).to match(active_memberships)
+          expect(described_class.active).to match_array(active_memberships)
         end
       end
     end

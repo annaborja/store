@@ -37,7 +37,7 @@ describe GatewayCustomer do
         it 'returns only non-deleted customers' do
           active_customers = Array.new(2) { create :gateway_customer, deleted_at: nil }
 
-          expect(described_class.active).to match(active_customers)
+          expect(described_class.active).to match_array(active_customers)
         end
       end
 
@@ -47,7 +47,7 @@ describe GatewayCustomer do
           active_customers = Array.new(2) { create :gateway_customer, deleted_at: nil }
           create :gateway_customer, deleted_at: Time.current
 
-          expect(described_class.active).to match(active_customers)
+          expect(described_class.active).to match_array(active_customers)
         end
       end
     end
